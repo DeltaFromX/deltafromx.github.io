@@ -1,0 +1,158 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background: #f4f4f4;
+}
+
+header {
+    background: #2c3e50;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.header-text h1 {
+    margin: 0;
+    font-size: 3em;
+}
+
+.header-text p {
+    font-size: 1.5em;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+section {
+    padding: 40px 0;
+    border-bottom: 1px solid #ccc;
+    background: #fff;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    color: #2c3e50;
+}
+
+section.about {
+    text-align: center;
+}
+
+section.about p {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Масштабирование по минимальной ширине */
+    gap: 20px;
+    justify-content: center;
+}
+
+.gallery-item {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    max-width: 100%; /* Максимальная ширина изображения */
+    max-height: 100%; /* Максимальная высота изображения */
+    object-fit: contain; /* Заполнение контейнера без искажения */
+    display: block;
+}
+
+.gallery-item p {
+    padding: 10px;
+    text-align: center;
+    font-size: 1em;
+}
+
+.contact p {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+footer {
+    background: #2c3e50;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+    }
+
+    .logo {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .header-text h1 {
+        font-size: 2.5em;
+    }
+
+    .header-text p {
+        font-size: 1.2em;
+    }
+
+    section h2 {
+        font-size: 2em;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .gallery-item {
+        width: 100%;
+    }
+}
