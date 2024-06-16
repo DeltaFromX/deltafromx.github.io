@@ -78,7 +78,7 @@ section.about p {
 
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Масштабирование по минимальной ширине */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     justify-content: center;
 }
@@ -101,9 +101,9 @@ section.about p {
 }
 
 .gallery-item img {
-    max-width: 100%; /* Максимальная ширина изображения */
-    max-height: 100%; /* Максимальная высота изображения */
-    object-fit: contain; /* Заполнение контейнера без искажения */
+    max-width: 100%;
+    max-height: 100%; 
+    object-fit: contain;
     display: block;
 }
 
