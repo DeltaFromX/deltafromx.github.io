@@ -3,53 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Визитка Дизайнера</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>DeltaFromX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: #00FFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8),
+                         0 0 40px rgba(0, 255, 255, 0.6),
+                         0 0 60px rgba(0, 255, 255, 0.4);
+            padding: 20px; 
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            max-width: 40%;
+        }
+
+        h1 {
+            color: #00FFFF;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #00FFFF;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #00FFFF;
+            color: #000;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: #00ccdd;
+        }
+
+        .social-icon i {
+            line-height: 40px;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            color: #00FFFF;
+            font-size: 12px;
+        }
+        @media (max-width: 600px) {
+    .container {
+        max-width: 80%;}
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container header-content">
-            <img src="logo.jpg" alt="Логотип Иван Иванов" class="logo">
-            <div class="header-text">
-                <h1>JunkerJJ</h1>
-                <p>Графический дизайнер / Художник</p>
-            </div>
+    <canvas id="matrix"></canvas>
+    <div class="container">
+        <h1>DeltaFromX</h1>
+        <p>Я - Гаврилов Алексей, python и web разработчик с опытом работы более 2 лет, я занимаюсь разработкой телеграм ботов, скриптов, изучаю работу вредоносных по, а также являюсь начинающим хакером.</p>
+        <div class="links">
+            <a href="https://t.me/your_telegram" target="_blank" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://github.com/your_github" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://vk.com/your_vk" target="_blank" class="social-icon"><i class="fab fa-vk"></i></a>
         </div>
-    </header>
-    <section class="about">
-        <div class="container">
-            <p>Я - JunkerJJ, графичиский дизайнер с большим опытом и бла бла бла</p>
-        </div>
-    </section>
-    <section class="portfolio">
-        <div class="container">
-            <h2>Портфолио</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="works/1.png" alt="Работа 1">
-
-                </div>
-                <div class="gallery-item">
-                    <img src="works/2.jpg" alt="Работа 2">
-
-                </div>
-                <div class="gallery-item">
-                    <img src="works/3.jpg" alt="Работа 3">
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="contact">
-        <div class="container">
-            <h2>Контакты</h2>
-            <p>Telegram: @Trublegul</p>
-        </div>
-    </section>
+    </div>
     <footer>
-        <div class="container">
-            <p>&copy; 2024 JunkerJJ. Все права защищены.</p>
-        </div>
+        © 2024 DeltaFromX. Все права защищены.
     </footer>
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
+
+        const katakana = 'アカサタナハマヤラワン0123456789';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        const draw = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00FFFF';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+
+                rainDrops[i]++;
+            }
+        };
+
+        setInterval(draw, 30);
+
+        window.addEventListener('resize', resizeCanvas);
+    </script>
 </body>
 </html>
