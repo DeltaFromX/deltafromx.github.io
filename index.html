@@ -1,158 +1,175 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeltaFromX</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-            color: #00FFFF;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeltaFromX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  color: #00FFFF;
+  background: transparent;
+  overflow: hidden; /* <--- ВАЖНО: убираем скролл */
+}
 
-        #matrix {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
 
-        .container {
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8),
-                         0 0 40px rgba(0, 255, 255, 0.6),
-                         0 0 60px rgba(0, 255, 255, 0.4);
-            padding: 20px; 
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 20px;
-            max-width: 40%;
-        }
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
 
-        h1 {
-            color: #00FFFF;
-            margin-bottom: 20px;
-        }
 
-        p {
-            color: #00FFFF;
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
+    #matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
 
-        .links {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .social-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: #00FFFF;
-            color: #000;
-            border-radius: 50%;
-            text-decoration: none;
-            font-size: 20px;
-            transition: background-color 0.3s;
-        }
-
-        .social-icon:hover {
-            background-color: #00ccdd;
-        }
-
-        .social-icon i {
-            line-height: 40px;
-        }
-
-        footer {
-            position: absolute;
-            bottom: 20px;
-            color: #00FFFF;
-            font-size: 12px;
-        }
-        @media (max-width: 600px) {
     .container {
-        max-width: 80%;}
-    </style>
-</head> 
+      position: relative;
+      z-index: 1;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+      padding: 30px 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .track-cover {
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+
+    .track-title {
+      font-size: 24px;
+      margin: 0;
+      font-weight: bold;
+      text-shadow: 0 0 10px #00FFFF;
+    }
+
+    .track-author {
+      font-size: 16px;
+      color: #0ff;
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background-color: rgba(0, 255, 255, 0.2);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background-color: #00FFFF;
+      animation: progressAnim 30s linear infinite;
+    }
+
+    @keyframes progressAnim {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .control-btn {
+      color: #00FFFF;
+      font-size: 28px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .control-btn:hover {
+      transform: scale(1.2);
+      color: #0ff;
+    }
+  </style>
+</head>
 <body>
-    <canvas id="matrix"></canvas>
-    <div class="container">
-        <h1>DeltaFromX</h1>
-        <p>Я - Гаврилов Алексей, python и web разработчик с опытом работы более 2 лет, я занимаюсь разработкой телеграм ботов, скриптов, изучаю работу вредоносных пo.</p>
-        <div class="links">
-            <a href="https://t.me/DeltaFromX" target="_blank" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://github.com/deltafromx" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-            <a href="https://vk.com/dfxpy" target="_blank" class="social-icon"><i class="fab fa-vk"></i></a>
-        </div>
+  <canvas id="matrix"></canvas>
+  <div class="container">
+    <img src="https://i.ibb.co/5WKShtPr/logo.jpg" alt="Cover" class="track-cover" />
+    <h2 class="track-title">Delta['FromX']</h2>
+    <p class="track-author">@anytcp</p>
+    <div class="progress-bar">
+      <div class="progress"></div>
     </div>
-    <footer>
-        © 2024 DeltaFromX. Все права защищены.
-    </footer>
-    <script>
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
+    <div class="controls">
+      <i class="fas fa-backward control-btn"></i>
+      <i class="fas fa-pause control-btn"></i>
+      <i class="fas fa-forward control-btn"></i>
+    </div>
+  </div>
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    resizeCanvas();
+
+    const katakana = 'アカサタナハマヤラワン0123456789';
+    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const nums = '0123456789';
+
+    const alphabet = katakana + latin + nums;
+
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+
+    const rainDrops = [];
+    for (let x = 0; x < columns; x++) {
+      rainDrops[x] = 1;
+    }
+
+    const draw = () => {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00FFFF';
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < rainDrops.length; i++) {
+        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          rainDrops[i] = 0;
         }
 
-        resizeCanvas();
+        rainDrops[i]++;
+      }
+    };
 
-        const katakana = 'アカサタナハマヤラワン0123456789';
-        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const nums = '0123456789';
-
-        const alphabet = katakana + latin + nums;
-
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-
-        const rainDrops = [];
-
-        for (let x = 0; x < columns; x++) {
-            rainDrops[x] = 1;
-        }
-
-        const draw = () => {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#00FFFF';
-            ctx.font = fontSize + 'px monospace';
-
-            for (let i = 0; i < rainDrops.length; i++) {
-                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-
-                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    rainDrops[i] = 0;
-                }
-
-                rainDrops[i]++;
-            }
-        };
-
-        setInterval(draw, 30);
-
-        window.addEventListener('resize', resizeCanvas);
-    </script>
+    setInterval(draw, 30);
+    window.addEventListener('resize', resizeCanvas);
+  </script>
 </body>
 </html>
