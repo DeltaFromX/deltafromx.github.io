@@ -1,175 +1,91 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DeltaFromX</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: Arial, sans-serif;
-  color: #00FFFF;
-  background: transparent;
-  overflow: hidden; /* <--- ВАЖНО: убираем скролл */
-}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="og:image" content="">
+        <title>delta['fromx']</title>
+        
+        <link rel="icon" href="favicon.png" type="image/png">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <script defer src="js/cursor.js"></script>
+        <script defer src="js/lanyard.js"></script>
+        <script defer src="js/preloader.js"></script>
+        <script defer src="js/projects.js"></script>
+        <script defer src="js/scrollActions.js"></script>
+        <script defer src="js/footerTime.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/gh/xaronnn/js-lanyard/lanyard.js"></script>
+        <script src="https://threejs.org/build/three.js"></script>
+    </head>
+    <body>
 
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-}
+        <div class="navbar">
+            <div class="lanyard-wrapper">
+                <div class="column">
+                    <a href="https://deltafromx.github.io" class="lanyard-username-anchor">
+                        <div class="lanyard-username"></div>
+                    </a>
+                    <div class="lanyard-activity"></div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li>
+                        <a href="https://discordapp.com/users/1234159105698959456/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/deltafromx" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://t.me/deltafromx" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
+        <div class="home-wrapper" id="home">
+            <h1 class="title">delta['fromx']</h1>
+            <h2 class="subtitle">15 year old <span>developer</span> from <span>Moscow</span></h2>
+            <div class="languages-wrapper">
+                <ul>
+                    <li><i class="fab fa-python"></i></li>
+                    <li><i class="fab fa-html5"></i></li>
+                    <li><i class="fab fa-css3-alt"></i></li>
+                    <li><i class="fab fa-node-js"></i></li>
+                </ul>
+            </div>
+        </div>
 
-    #matrix {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
+        <div class="projects-wrapper" id="projects">
+            <h1 class="projects-title">Projects</h1>
+            <div class="projects"></div>
+        </div>
 
-    .container {
-      position: relative;
-      z-index: 1;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(6px);
-      padding: 30px 30px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
-      width: 90%;
-      max-width: 400px;
-    }
+        <div class="scroll-up">
+            <i class="fas fa-chevron-up"></i>
+        </div>
 
-    .track-cover {
-      width: 100%;
-      border-radius: 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-    }
-
-    .track-title {
-      font-size: 24px;
-      margin: 0;
-      font-weight: bold;
-      text-shadow: 0 0 10px #00FFFF;
-    }
-
-    .track-author {
-      font-size: 16px;
-      color: #0ff;
-      margin-top: 5px;
-      margin-bottom: 20px;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 6px;
-      background-color: rgba(0, 255, 255, 0.2);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-
-    .progress {
-      height: 100%;
-      width: 0%;
-      background-color: #00FFFF;
-      animation: progressAnim 30s linear infinite;
-    }
-
-    @keyframes progressAnim {
-      0% { width: 0%; }
-      100% { width: 100%; }
-    }
-
-    .controls {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-    }
-
-    .control-btn {
-      color: #00FFFF;
-      font-size: 28px;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .control-btn:hover {
-      transform: scale(1.2);
-      color: #0ff;
-    }
-  </style>
-</head>
-<body>
-  <canvas id="matrix"></canvas>
-  <div class="container">
-    <img src="https://i.ibb.co/5WKShtPr/logo.jpg" alt="Cover" class="track-cover" />
-    <h2 class="track-title">Delta['FromX']</h2>
-    <p class="track-author">@anytcp</p>
-    <div class="progress-bar">
-      <div class="progress"></div>
-    </div>
-    <div class="controls">
-      <i class="fas fa-backward control-btn"></i>
-      <i class="fas fa-pause control-btn"></i>
-      <i class="fas fa-forward control-btn"></i>
-    </div>
-  </div>
-
-  <script>
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    resizeCanvas();
-
-    const katakana = 'アカサタナハマヤラワン0123456789';
-    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const nums = '0123456789';
-
-    const alphabet = katakana + latin + nums;
-
-    const fontSize = 16;
-    const columns = canvas.width / fontSize;
-
-    const rainDrops = [];
-    for (let x = 0; x < columns; x++) {
-      rainDrops[x] = 1;
-    }
-
-    const draw = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#00FFFF';
-      ctx.font = fontSize + 'px monospace';
-
-      for (let i = 0; i < rainDrops.length; i++) {
-        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-
-        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          rainDrops[i] = 0;
-        }
-
-        rainDrops[i]++;
-      }
-    };
-
-    setInterval(draw, 30);
-    window.addEventListener('resize', resizeCanvas);
-  </script>
-</body>
-</html>
+        <div class="footer-wrapper">
+            <div class="footer">
+                <div class="left-column">
+                    <span class="current-date"></span>
+                    <span class="current-time"></span>
+                </div>
+                <div class="right-column">
+                    <p class="rights">© 2024 Edited By <b>delta['fromx']</b>  All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html> 
