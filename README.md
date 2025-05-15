@@ -1,1 +1,0 @@
-# deltafromx.github.io
