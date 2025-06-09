@@ -24,7 +24,6 @@ section {
   overflow: hidden;
 }
 
-/* --- Parallax Background --- */
 #home::before {
   content: '';
   position: absolute;
@@ -37,7 +36,10 @@ section {
   transition: transform 0.2s ease-out;
 }
 
-/* Неоновое мерцание для слов developer и Moscow */
+#home {
+  overflow: visible;
+}
+
 .neon-glow {
   color: #ff66cc;
   font-weight: 700;
