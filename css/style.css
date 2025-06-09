@@ -214,3 +214,13 @@ p {
     0 0 15px #cc33ff,
     0 0 25px #9900cc;
 }
+@media (max-width: 480px) {
+  #home p {
+    font-size: 1rem;
+    white-space: nowrap;
+    text-align: center;
+    padding: 0 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
