@@ -41,39 +41,38 @@ section {
 }
 
 .neon-glow {
-  color: #ff66cc;
+  color: #ffffff;
   font-weight: 700;
   text-shadow:
-    0 0 5px #ff66cc,
-    0 0 10px #ff66cc,
-    0 0 20px #ff66cc,
-    0 0 40px #cc33ff,
-    0 0 80px #cc33ff;
+    0 0 5px #ffffff,
+    0 0 10px #cccccc,
+    0 0 20px #ffffff,
+    0 0 40px #e6e6e6,
+    0 0 80px #f2f2f2;
   animation: neon-flicker 3s infinite alternate;
 }
 
 @keyframes neon-flicker {
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
     text-shadow:
-      0 0 5px #ff66cc,
-      0 0 10px #ff66cc,
-      0 0 20px #ff66cc,
-      0 0 40px #ff66cc,
-      0 0 80px #ff66cc;
-    color: #ff66cc;
+      0 0 5px #ffffff,
+      0 0 10px #cccccc,
+      0 0 20px #ffffff,
+      0 0 40px #f2f2f2,
+      0 0 80px #f2f2f2;
+    color: #ffffff;
     opacity: 1;
   }
   20%, 22%, 24%, 55% {
     text-shadow: none;
-    color: #aa3366;
+    color: #cccccc;
     opacity: 0.85;
   }
 }
 
-/* Заголовок с плавным градиентом */
 h1 {
   font-size: 3rem;
-  background: linear-gradient(270deg, #ff66cc, #cc66ff, #9966ff, #ff66cc);
+  background: linear-gradient(270deg, #ffffff, #cccccc, #999999, #ffffff);
   background-size: 800% 800%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -83,39 +82,36 @@ h1 {
   will-change: transform, text-shadow, background;
 }
 
-h1:hover {
-  animation: none;
-  background: linear-gradient(270deg, #ff4da6, #cc33ff, #9900cc, #ff4da6);
-  background-size: 800% 800%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transform: scale(1.05);
-  text-shadow:
-    0 0 2px #ff4da6,
-    0 0 8px #cc33ff,
-    0 0 12px #9900cc;
-}
+
 
 @keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+#typing {
+  font-size: 3rem;
+  color: #fff;
+  white-space: nowrap;
+  border-right: 2px solid #fff; /* курсор */
+  overflow: hidden;
 }
 
-/* Параграф */
+@keyframes blinkCursor {
+  0%, 50%, 100% { border-color: #fff; }
+  25%, 75% { border-color: transparent; }
+}
+
+#typing {
+  animation: blinkCursor 0.7s step-end infinite;
+}
+
 p {
   color: #ccc;
   font-size: 1.2rem;
   margin-bottom: 2rem;
 }
 
-/* Иконки технологий */
 .tech-icons {
   display: flex;
   gap: 1rem;
@@ -125,21 +121,20 @@ p {
 .tech-icons i {
   font-size: 2rem;
   margin: 0 0.5rem;
-  color: #ff66cc; /* базовый неоновый цвет */
+  color: #ffffff;
   cursor: pointer;
   transition: color 0.3s ease, text-shadow 0.3s ease;
-  filter: drop-shadow(0 0 1px #ff66ff);
+  filter: drop-shadow(0 0 1px #cccccc);
 }
 
 .tech-icons i:hover {
-  color: #ff4da6;
+  color: #e6e6e6;
   text-shadow:
-    0 0 6px #ff4da6,
-    0 0 10px #cc33ff,
-    0 0 15px #9900cc;
+    0 0 3px #ffffff,
+    0 0 5px #cccccc,
+    0 0 8px #999999;
 }
 
-/* Анимация стрелки вниз */
 .scroll-down {
   margin-top: 3rem;
   font-size: 1rem;
@@ -152,13 +147,11 @@ p {
   50% { transform: translateY(8px); }
 }
 
-/* Контейнер проектов */
 .projects-container {
   max-width: 900px;
   width: 100%;
 }
 
-/* Сетка проектов */
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -171,14 +164,14 @@ p {
   }
 }
 
-/* Проекты */
 .project {
   background: #1a1a1a;
   padding: 1rem;
   border-radius: 10px;
-  border: 1px solid #330033; /* темный розовый оттенок */
+  border: 1px solid #333333;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.3s;
   opacity: 0;
+  cursor: pointer;
   transform: translateY(40px);
 }
 
@@ -191,31 +184,27 @@ p {
 .project:hover {
   transform: translateY(-3px);
   box-shadow:
-    0 0 10px rgba(255, 102, 204, 0.5),
-    0 0 20px rgba(204, 51, 255, 0.7),
-    0 0 30px rgba(153, 0, 204, 0.8);
-  border-color: #ff66cc;
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(204, 204, 204, 0.7),
+    0 0 30px rgba(153, 153, 153, 0.8);
+  border-color: #ffffff;
 }
 
-/* Ссылки в проектах с неоновым розовым цветом */
 .project a {
-  color: #ff66cc; /* неоново-розовый */
+  color: #ffffff;
   font-weight: bold;
   text-decoration: none;
-  text-shadow:
-    0 0 5px #ff66cc,
-    0 0 10px #cc33ff,
-    0 0 20px #9900cc;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .project a:hover {
-  color: #ff4da6;
+  color: #e6e6e6;
   text-shadow:
-    0 0 8px #ff4da6,
-    0 0 15px #cc33ff,
-    0 0 25px #9900cc;
+    0 0 8px #ffffff,
+    0 0 15px #cccccc,
+    0 0 25px #999999;
 }
+
 @media (max-width: 480px) {
   #home p {
     font-size: 1rem;
@@ -226,3 +215,4 @@ p {
     text-overflow: ellipsis;
   }
 }
+
