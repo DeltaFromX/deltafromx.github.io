@@ -14,7 +14,6 @@ async function loadRepos() {
         <p>${repo.description || 'No description available'}</p>
       `;
 
-      // Сделать весь блок кликабельным
       el.addEventListener('click', () => {
         window.open(repo.html_url, '_blank');
       });
@@ -22,7 +21,6 @@ async function loadRepos() {
       container.appendChild(el);
     });
 
-    // Обновить видимость (для появления)
     handleScroll();
   } catch (e) {
     console.error('Ошибка при загрузке проектов:', e);
@@ -39,7 +37,6 @@ function handleScroll() {
   });
 }
 
-// Parallax Background Scroll
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
 
@@ -50,7 +47,6 @@ window.addEventListener('scroll', () => {
   handleScroll();
 });
 
-// Init
 loadRepos();
 window.addEventListener('scroll', handleScroll);
 const texts = [
@@ -74,19 +70,18 @@ function type() {
     typingElement.textContent = currentText.slice(0, charIndex);
   }
 
-  let delay = isDeleting ? 50 : 100; // скорость печати
+  let delay = isDeleting ? 50 : 100;
 
   if (!isDeleting && charIndex === currentText.length) {
-    delay = 1500; // пауза перед удалением
+    delay = 1500;
     isDeleting = true;
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
-    textIndex = (textIndex + 1) % texts.length; // переход к следующему тексту
-    delay = 0; // пауза перед печатью нового текста
+    textIndex = (textIndex + 1) % texts.length;
+    delay = 0;
   }
 
   setTimeout(type, delay);
 }
 
-// Запуск
 type();
